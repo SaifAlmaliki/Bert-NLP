@@ -14,7 +14,7 @@ Before feeding word sequences into BERT, 15% of the words in each sequence are r
 Adding a classification layer on top of the encoder output.
 Multiplying the output vectors by the embedding matrix, transforming them into the vocabulary dimension.
 Calculating the probability of each word in the vocabulary with softmax.
-<img src =/>
+<img src ='https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img1.png' />
 
 The BERT loss function takes into consideration only the prediction of the masked values and ignores the prediction of the non-masked words. As a consequence, the model converges slower than directional models, a characteristic which is offset by its increased context awareness (see Takeaways #3).
 Note: In practice, the BERT implementation is slightly more elaborate and doesn’t replace all of the 15% masked words. See Appendix A for additional information.
@@ -28,7 +28,9 @@ A [CLS] token is inserted at the beginning of the first sentence and a [SEP] tok
 A sentence embedding indicating Sentence A or Sentence B is added to each token. Sentence embeddings are similar in concept to token embeddings with a vocabulary of 2.
 
 A positional embedding is added to each token to indicate its position in the sequence. The concept and implementation of positional embedding are presented in the Transformer paper.
-Image for post
+
+<img src='https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img1.png' />
+
 Source: BERT [Devlin et al., 2018], with modifications
 
 To predict if the second sentence is indeed connected to the first, the following steps are performed:
