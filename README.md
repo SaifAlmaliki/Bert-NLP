@@ -14,6 +14,7 @@ Before feeding word sequences into BERT, 15% of the words in each sequence are r
 Adding a classification layer on top of the encoder output.
 Multiplying the output vectors by the embedding matrix, transforming them into the vocabulary dimension.
 Calculating the probability of each word in the vocabulary with softmax.
+
 <img src ='https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img1.png' />
 
 The BERT loss function takes into consideration only the prediction of the masked values and ignores the prediction of the non-masked words. As a consequence, the model converges slower than directional models, a characteristic which is offset by its increased context awareness (see Takeaways #3).
@@ -29,7 +30,8 @@ A sentence embedding indicating Sentence A or Sentence B is added to each token.
 
 A positional embedding is added to each token to indicate its position in the sequence. The concept and implementation of positional embedding are presented in the Transformer paper.
 
-<img src='https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img1.png' />
+
+<img src='https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img2.png' />
 
 Source: BERT [Devlin et al., 2018], with modifications
 
@@ -61,14 +63,20 @@ Source: BERT [Devlin et al., 2018]
 Compute considerations (training and applying)
 
 
-<img src= />
+<img src= https://github.com/SaifAlmaliki/Bert-NLP/blob/main/img3.png/>
 
 # Conclusion
 
-BERT is undoubtedly a breakthrough in the use of Machine Learning for Natural Language Processing. The fact that it’s approachable and allows fast fine-tuning will likely allow a wide range of practical applications in the future. In this summary, we attempted to describe the main ideas of the paper while not drowning in excessive technical details. For those wishing for a deeper dive, we highly recommend reading the full article and ancillary articles referenced in it. Another useful reference is the BERT source code and models, which cover 103 languages and were generously released as open source by the research team.
+BERT is undoubtedly a breakthrough in the use of Machine Learning for Natural Language Processing. The fact that it’s approachable and allows fast fine-tuning will likely allow a wide range of practical applications in the future. 
+
+In this summary, we attempted to describe the main ideas of the paper while not drowning in excessive technical details. For those wishing for a deeper dive, we highly recommend reading the full article and ancillary articles referenced in it. Another useful reference is the BERT source code and models, which cover 103 languages and were generously released as open source by the research team.
 Appendix A — Word Masking
+
 Training the language model in BERT is done by predicting 15% of the tokens in the input, that were randomly picked. These tokens are pre-processed as follows — 80% are replaced with a “[MASK]” token, 10% with a random word, and 10% use the original word. The intuition that led the authors to pick this approach is as follows (Thanks to Jacob Devlin from Google for the insight):
+
 If we used [MASK] 100% of the time the model wouldn’t necessarily produce good token representations for non-masked words. The non-masked tokens were still used for context, but the model was optimized for predicting masked words.
+
 If we used [MASK] 90% of the time and random words 10% of the time, this would teach the model that the observed word is never correct.
+
 If we used [MASK] 90% of the time and kept the same word 10% of the time, then the model could just trivially copy the non-contextual embedding.
 No ablation was done on the ratios of this approach, and it may have worked better with different ratios. In addition, the model performance wasn’t tested with simply masking 100% of the selected tokens.
